@@ -2,6 +2,9 @@ import React from 'react';
 import Categories from '../components/Categories';
 import PizzaBlock from '../components/PizzaBlock';
 import Sort from '../components/Sort';
+import pizzas from '../assets/db.json';
+
+console.log(pizzas);
 
 function Home() {
   return (
@@ -13,11 +16,9 @@ function Home() {
         </div>
         <h2 className="content__title">Все пиццы</h2>
         <div className="content__items">
-          <PizzaBlock />
-          <PizzaBlock />
-          <PizzaBlock />
-          <PizzaBlock />
-          <PizzaBlock />
+          {pizzas.map((obj) => (
+            <PizzaBlock item={obj} />
+          ))}
         </div>
       </div>
     </div>
