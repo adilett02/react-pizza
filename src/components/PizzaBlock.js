@@ -3,7 +3,6 @@ import React, { useState } from 'react';
 let types = ['тонкое', 'традиционное'];
 
 function PizzaBlock({ item }) {
-  console.log(item);
   const [pizzaCount, setPizzaCount] = useState(0);
   const [sizesIndex, setSizesIndex] = useState(0);
   const [typesIndex, setTypesIndex] = useState(0);
@@ -23,7 +22,8 @@ function PizzaBlock({ item }) {
           {item.types.map((value, index) => (
             <li
               onClick={() => onClickTypes(index)}
-              className={typesIndex === index ? 'active' : ''}>
+              className={typesIndex === index ? 'active' : ''}
+              key={index}>
               {types[value]}
             </li>
           ))}
@@ -32,7 +32,8 @@ function PizzaBlock({ item }) {
           {item.sizes.map((value, index) => (
             <li
               onClick={() => onClickSizes(index)}
-              className={sizesIndex === index ? 'active' : ''}>
+              className={sizesIndex === index ? 'active' : ''}
+              key={index}>
               {value} см.
             </li>
           ))}
