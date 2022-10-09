@@ -4,12 +4,22 @@ import PizzaBlock from '../components/PizzaBlock';
 import Sort from '../components/Sort';
 import PizzaBlockSceleton from '../skeleton/PizzaBlockSceleton';
 
+let sortArr = ['rating&order=desc', 'price', 'name'];
+
 function Home() {
   const [pizzas, setPizzas] = useState(['', '', '', '', '', '', '', '']);
   const [loading, setLoading] = useState(true);
 
+  const [categoryIndex, setCategoryIndex] = useState(0);
+  const [sortIndex, setSortIndex] = useState(0);
+
   useEffect(() => {
-    fetch('https://633da41f7e19b178291340df.mockapi.io/items')
+    setLoading(true);
+    fetch(
+      `https://633da41f7e19b178291340df.mockapi.io/items?category=${
+        categoryIndex === 0 ? '' : categoryIndex
+      }&sortBy=${sortArr[sortIndex]}`,
+    )
       .then((res) => {
         return res.json();
       })
@@ -17,14 +27,14 @@ function Home() {
         setPizzas(pizza);
         setLoading(false);
       });
-  }, []);
+  }, [categoryIndex, sortIndex]);
 
   return (
     <div className="content">
       <div className="container">
         <div className="content__top">
-          <Categories />
-          <Sort />
+          <Categories valueId={categoryIndex} onClickCategory={(i) => setCategoryIndex(i)} />
+          <Sort valueId={sortIndex} onClickSort={(i) => setSortIndex(i)} />
         </div>
         <h2 className="content__title">Все пиццы</h2>
         <div className="content__items">

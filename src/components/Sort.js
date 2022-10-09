@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
 let sortList = ['популярности', 'цене', 'алфавиту'];
-function Sort() {
+function Sort({ valueId, onClickSort }) {
   const [openSort, setOpenSort] = useState(false);
-  const [sortIndex, setSortIndex] = useState(0);
 
-  let onClickSort = (index) => {
-    setSortIndex(index);
+  let onClick = (index) => {
+    onClickSort(index);
     setOpenSort(false);
   };
 
@@ -24,7 +23,7 @@ function Sort() {
           />
         </svg>
         <b>Сортировка по:</b>
-        <span onClick={() => setOpenSort(!openSort)}>{sortList[sortIndex]}</span>
+        <span onClick={() => setOpenSort(!openSort)}>{sortList[valueId]}</span>
       </div>
 
       {openSort && (
@@ -32,8 +31,8 @@ function Sort() {
           <ul>
             {sortList.map((name, index) => (
               <li
-                onClick={() => onClickSort(index)}
-                className={index === sortIndex ? 'active' : ''}
+                onClick={() => onClick(index)}
+                className={index === valueId ? 'active' : ''}
                 key={index}>
                 {name}
               </li>
