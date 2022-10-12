@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { SearchContext } from '../App';
 import logo from '../assets/img/pizza-logo.svg';
 
 function Header() {
+  const { searchValue, setSearchValue } = useContext(SearchContext);
+
   return (
     <div className="header">
       <div className="container">
@@ -12,6 +15,15 @@ function Header() {
             <h1>React Pizza</h1>
             <p>самая вкусная пицца во вселенной</p>
           </div>
+        </div>
+
+        <div className="search">
+          <input
+            type="text"
+            placeholder="Введите название пиццы..."
+            value={searchValue}
+            onChange={(e) => setSearchValue(e.target.value)}
+          />
         </div>
         <div className="header__cart">
           <Link to="/cart" className="button button--cart">

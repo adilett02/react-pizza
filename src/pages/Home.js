@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
+import { SearchContext } from '../App';
 import Categories from '../components/Categories';
 import PizzaBlock from '../components/PizzaBlock';
 import Sort from '../components/Sort';
@@ -7,6 +8,7 @@ import PizzaBlockSceleton from '../skeleton/PizzaBlockSceleton';
 let sortArr = ['rating&order=desc', 'price', 'name'];
 
 function Home() {
+  const { searchValue } = useContext(SearchContext);
   const [pizzas, setPizzas] = useState(['', '', '', '', '', '', '', '']);
   const [loading, setLoading] = useState(true);
 
@@ -18,7 +20,7 @@ function Home() {
     fetch(
       `https://633da41f7e19b178291340df.mockapi.io/items?category=${
         categoryIndex === 0 ? '' : categoryIndex
-      }&sortBy=${sortArr[sortIndex]}`,
+      }&sortBy=${sortArr[sortIndex]}&search=${searchValue}`,
     )
       .then((res) => {
         return res.json();
@@ -27,7 +29,7 @@ function Home() {
         setPizzas(pizza);
         setLoading(false);
       });
-  }, [categoryIndex, sortIndex]);
+  }, [categoryIndex, sortIndex, searchValue]);
 
   return (
     <div className="content">

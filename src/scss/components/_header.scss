@@ -29,4 +29,13 @@
       color: #7b7b7b;
     }
   }
+  .search {
+    width: 300px;
+    input{
+      width: 100%;
+      padding: 15px 30px;
+      border: 1px solid #000;
+      border-radius: 10px;
+    }
+  }
 }
