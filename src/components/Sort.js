@@ -1,10 +1,14 @@
 import React, { useState } from 'react';
-let sortList = ['популярности', 'цене', 'алфавиту'];
-function Sort({ valueId, onClickSort }) {
+import { useDispatch, useSelector } from 'react-redux';
+import { setSortIndex } from '../redux/slices/FilterSlice';
+
+function Sort({ valueId }) {
+  const sortList = useSelector((state) => state.filter.sortList);
   const [openSort, setOpenSort] = useState(false);
+  const dispatch = useDispatch();
 
   let onClick = (index) => {
-    onClickSort(index);
+    dispatch(setSortIndex(index));
     setOpenSort(false);
   };
 

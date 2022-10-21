@@ -25,3 +25,36 @@ function App() {
 }
 
 export default App;
+
+// import React from 'react';
+// import { useSelector, useDispatch } from 'react-redux';
+// import { decrement, increment } from './redux/slices/CounterSlice';
+
+// import { counterSlice } from './redux/slices/CounterSlice';
+
+// export function Counter() {
+//   const count = useSelector((state) => state.counter.value);
+//   const filter = useSelector((state) => state.filter.categories);
+//   // console.log(count);
+//   // console.log(filter);
+//   // console.log(increment);
+//   const dispatch = useDispatch();
+
+//   console.log(counterSlice);
+
+//   return (
+//     <div>
+//       <div>
+//         <button aria-label="Increment value" onClick={() => dispatch(increment(18))}>
+//           Increment
+//         </button>
+//         <span>{count}</span>
+//         <button aria-label="Decrement value" onClick={() => dispatch(decrement())}>
+//           Decrement
+//         </button>
+//       </div>
+//     </div>
+//   );
+// }
+
+// export default Counter;

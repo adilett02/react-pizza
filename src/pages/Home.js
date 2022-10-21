@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import { SearchContext } from '../App';
 import Categories from '../components/Categories';
 import PizzaBlock from '../components/PizzaBlock';
@@ -12,8 +13,8 @@ function Home() {
   const [pizzas, setPizzas] = useState(['', '', '', '', '', '', '', '']);
   const [loading, setLoading] = useState(true);
 
-  const [categoryIndex, setCategoryIndex] = useState(0);
-  const [sortIndex, setSortIndex] = useState(0);
+  const categoryIndex = useSelector((state) => state.filter.categoryIndex);
+  const sortIndex = useSelector((state) => state.filter.sortIndex);
 
   useEffect(() => {
     setLoading(true);
@@ -35,13 +36,13 @@ function Home() {
     <div className="content">
       <div className="container">
         <div className="content__top">
-          <Categories valueId={categoryIndex} onClickCategory={(i) => setCategoryIndex(i)} />
-          <Sort valueId={sortIndex} onClickSort={(i) => setSortIndex(i)} />
+          <Categories valueId={categoryIndex} />
+          <Sort valueId={sortIndex} />
         </div>
         <h2 className="content__title">Все пиццы</h2>
         <div className="content__items">
-          {pizzas.map((obj) =>
-            loading ? <PizzaBlockSceleton /> : <PizzaBlock item={obj} key={obj.id} />,
+          {pizzas.map((obj, index) =>
+            loading ? <PizzaBlockSceleton key={index} /> : <PizzaBlock item={obj} key={obj.id} />,
           )}
         </div>
       </div>
