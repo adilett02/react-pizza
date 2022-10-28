@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React, { useContext, useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { SearchContext } from '../App';
@@ -18,16 +19,15 @@ function Home() {
 
   useEffect(() => {
     setLoading(true);
-    fetch(
-      `https://633da41f7e19b178291340df.mockapi.io/items?category=${
-        categoryIndex === 0 ? '' : categoryIndex
-      }&sortBy=${sortArr[sortIndex]}&search=${searchValue}`,
-    )
-      .then((res) => {
-        return res.json();
-      })
-      .then((pizza) => {
-        setPizzas(pizza);
+
+    axios
+      .get(
+        `https://633da41f7e19b178291340df.mockapi.io/items?category=${
+          categoryIndex === 0 ? '' : categoryIndex
+        }&sortBy=${sortArr[sortIndex]}&search=${searchValue}`,
+      )
+      .then((response) => {
+        setPizzas(response.data);
         setLoading(false);
       });
   }, [categoryIndex, sortIndex, searchValue]);
