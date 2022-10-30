@@ -14,6 +14,8 @@ function Home() {
   const [pizzas, setPizzas] = useState(['', '', '', '', '', '', '', '']);
   const [loading, setLoading] = useState(true);
 
+  console.log(pizzas);
+
   const categoryIndex = useSelector((state) => state.filter.categoryIndex);
   const sortIndex = useSelector((state) => state.filter.sortIndex);
 

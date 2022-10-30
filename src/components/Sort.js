@@ -14,14 +14,16 @@ function Sort({ valueId }) {
 
   const sortRef = useRef();
 
-  useEffect(() => {
-    document.body.addEventListener('click', (event) => {
-      if (!event.path.includes(sortRef.current)) {
-        setOpenSort(false);
-        console.log('click outside');
-      }
-    });
-  }, []);
+  // useEffect(() => {
+  //   const clickOutside = () => {
+  //     document.body.addEventListener('click', (event) => {
+  //       if (!event.path.includes(sortRef.current)) {
+  //         setOpenSort(false);
+  //         console.log('click outside');
+  //       }
+  //     });
+  //   };
+  // }, []);
 
   return (
     <div ref={sortRef} className="sort">
